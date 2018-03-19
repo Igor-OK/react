@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as moment from 'moment';
 
 import {Image} from './Image';
+import './CardAlter.css';
 
 export function CardAlter({card}) {
     if (!card) {

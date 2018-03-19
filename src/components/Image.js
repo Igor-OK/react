@@ -26,7 +26,7 @@ export class Image extends React.Component {
             <div
                 className="image"
                 style={{
-                    height: ratio ? ratio + 'vw' : '',
+                    // height: ratio ? ratio + 'vw' : '',
                     backgroundColor: color
                 }}
             >
