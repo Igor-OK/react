@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {Card} from './Card';
+import {CardAlter} from './CardAlter';
 import {Infinite} from './Infinite';
 
 export function Cards({cards, fetchNext}) {
@@ -8,7 +8,7 @@ export function Cards({cards, fetchNext}) {
         <Infinite fetchNext={fetchNext}>
             <div className="cards">
                 {cards.map((card) =>
-                    <Card card={card} key={card.id}/>
+                    <CardAlter card={card} key={card.id}/>
                 )}
             </div>
         </Infinite>
