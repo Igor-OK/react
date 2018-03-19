@@ -40,7 +40,7 @@ export class Feed extends React.Component {
             .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(query[key])}`)
             .join('&');
 
-        let response = await fetch('/collections/api/cards/channels/retsepty/?' + params, {credentials: 'same-origin'});
+        let response = await fetch('/collections/api/cards/channels/gory/?' + params, {credentials: 'same-origin'});
         let json = await response.json();
 
         this.next = json.next;
