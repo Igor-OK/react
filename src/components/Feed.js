@@ -6,13 +6,18 @@ export class Feed extends React.Component {
 
     state = {
         loading: true,
-        cards: []
+        cards: [],
+        width: 0,
+        height: 0,
+        columns: 0,
+        columnWidth: 0
     };
 
     constructor(props) {
         super(props);
 
         this.fetchNext = this.fetchNext.bind(this);
+        this.updateDimensions = this.updateDimensions.bind(this);
     }
 
     componentDidMount() {
@@ -23,6 +28,40 @@ export class Feed extends React.Component {
                     error
                 });
             });
+
+        window.addEventListener("resize", this.updateDimensions);
+    }
+
+    componentWillMount() {
+        this.updateDimensions();
+    }
+
+    componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions);
+    }
+
+
+    updateDimensions(){
+      let w = window,
+              d = document,
+              documentElement = d.documentElement,
+              body = d.getElementsByTagName('body')[0],
+              width = w.innerWidth || documentElement.clientWidth || body.clientWidth,
+              height = w.innerHeight|| documentElement.clientHeight|| body.clientHeight,
+              cols,
+              colWidth;
+      if (width >= 1300) cols = 4;
+      if (width < 1300 && width >= 950) cols = 3;
+      if (width < 950 && width >= 640) cols = 2;
+
+      colWidth = Math.round(width/cols);
+
+       this.setState({width: width, height: height});
+
+       console.log("width", width);
+       console.log("height", height);
+       console.log("cols", cols);
+       console.log("colWidth", colWidth);
     }
 
     fetchData() {
@@ -49,6 +88,7 @@ export class Feed extends React.Component {
             cards: this.state.cards.concat(json.results),
             loading: false
         });
+        console.log(this.state.cards);
     }
 
     render() {
