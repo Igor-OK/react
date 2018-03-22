@@ -56,7 +56,7 @@ export class Feed extends React.Component {
 
       colWidth = Math.round(width/cols);
 
-       this.setState({width: width, height: height});
+       this.setState({width: width, height: height, columns: cols, columnWidth: colWidth});
 
        console.log("width", width);
        console.log("height", height);
@@ -112,6 +112,8 @@ export class Feed extends React.Component {
             <Cards
                 cards={this.state.cards}
                 fetchNext={this.fetchNext}
+                columns={this.state.columns}
+                colWidth={this.state.columnWidth}
             />
         );
     }
